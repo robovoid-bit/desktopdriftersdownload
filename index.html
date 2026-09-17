@@ -7,116 +7,59 @@
     <title>Aero Proxy | Sophisticated Web Proxy</title>
     <meta name="description" content="Aero Proxy is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers. Unblock sites today!" />
     <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, holy unblocker, chromebooks, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121214">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111111">
     <meta name="googlebot" content="index, follow, snippet" />
     <link href="index.css" rel="stylesheet">
     <style>
-        /* Modernized Dark UI Theme */
-        body {
-            background-color: #121214;
-            color: #e1e1e6;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .container {
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            background: #1c1c21;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            border: 1px solid #29292e;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(153, 102, 255, 0.2);
-        }
-
-        .desc p {
-            color: #a8a8b3;
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 30px;
-        }
-
         #bareServerSelect {
-            width: 100%;
-            padding: 12px;
-            background-color: #29292e;
-            color: #e1e1e6;
-            border: 1px solid #323238;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            width: 220px;
+            padding: 8px 12px;
+            background: #222;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
             outline: none;
             cursor: pointer;
-            transition: border-color 0.2s;
+            margin: 15px auto;
+            display: block;
+            text-align: center;
         }
-
         #bareServerSelect:focus {
-            border-color: #9966ff;
+            border-color: rgba(253, 253, 253, 0.514);
         }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            background-color: #121214;
-            color: #ffffff;
-            border: 1px solid #323238;
-            border-radius: 8px;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: all 0.2s;
-        }
-
-        input:focus {
-            border-color: #9966ff;
-            box-shadow: 0 0 8px rgba(153, 102, 255, 0.2);
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 0.85rem;
-            color: #737380;
+        iframe {
+            display: none;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="logo-wrapper">
         <h1 title="Ultraviolet supports YouTube, GeForce NOW and more!">Aero Proxy</h1>
-        <div class="desc">
-            <p>A highly sophisticated web proxy used for evading internet censorship seamlessly.</p>
-        </div>
-
-        <!-- Dropdown menu -->
-        <select id="bareServerSelect">
-            <option>Loading servers...</option>
-        </select>
-
-        <form>
-            <input placeholder="Search the web freely...">
-        </form>
-
-        <footer>
-            <span>Ultraviolet &copy;</span>
-        </footer>
+    </div>
+    
+    <div title="Ultraviolet uses the power of service-workers and more! Unblock many sites today with Ultraviolet!" class="desc">
+        <p>A highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox securely.</p>
     </div>
 
-    <!-- Scripts must load in this strict order -->
+    <!-- Bare Server Selector -->
+    <select id="bareServerSelect">
+        <option>Loading servers...</option>
+    </select>
+
+    <!-- Search Form -->
+    <form>
+        <input placeholder="Search the web freely">
+    </form>
+
+    <!-- Appended Iframe required by custom script DOM injection -->
+    <iframe src="about:blank"></iframe>
+
+    <footer>
+        <span>Ultraviolet &copy;</span>
+    </footer>
+
+    <!-- Scripts loaded in sequential execution order -->
     <script src="uv/uv.bundle.js"></script>
     <script src="uv/uv.config.js"></script>
     <script src="index.js"></script>

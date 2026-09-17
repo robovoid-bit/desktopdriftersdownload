@@ -104,7 +104,7 @@
 
         <!-- Dropdown menu -->
         <select id="bareServerSelect">
-            <!-- Options will be populated dynamically using JavaScript -->
+            <option>Loading servers...</option>
         </select>
 
         <form>
@@ -116,44 +116,9 @@
         </footer>
     </div>
 
+    <!-- Scripts must load in this strict order -->
     <script src="uv/uv.bundle.js"></script>
     <script src="uv/uv.config.js"></script>
-    <script>
-        // JSON data of bare servers
-        const bareServerData = {
-            "servers": [
-                "https://tomp.app",
-                "https://phantomnetwork.cloud",
-                "https://artclass.site",
-                "https://shuttleproxy.com"
-            ]
-        };
-
-        // Function to populate the dropdown menu
-        function populateDropdown() {
-            const select = document.getElementById('bareServerSelect');
-            const servers = bareServerData.servers;
-
-            servers.forEach((server) => {
-                const option = document.createElement('option');
-                option.value = server;
-                option.textContent = server;
-                select.appendChild(option);
-            });
-        }
-
-        // Event listener to handle user selection and console messages
-        document.getElementById('bareServerSelect').addEventListener('change', () => {
-            const selectedServer = document.getElementById('bareServerSelect').value;
-            console.log(`Selected server: ${selectedServer}`);
-        });
-
-        // Populate the dropdown on page load
-        window.addEventListener('load', () => {
-            populateDropdown();
-            console.log('Dropdown menu populated.');
-        });
-    </script>
     <script src="index.js"></script>
 </body>
 

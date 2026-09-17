@@ -1,168 +1,37 @@
-<!DOCTYPE html>
-<html>
+const form = document.querySelector('form');
+const input = document.querySelector('input');
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Aero Proxy | Sophisticated Web Proxy</title>
-    <meta name="description" content="Aero Proxy is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers. Unblock sites today!" />
-    <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, holy unblocker, chromebooks, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121214">
-    <meta name="googlebot" content="index, follow, snippet" />
-    <link href="index.css" rel="stylesheet">
-    <style>
-        /* Modernized Dark UI Theme */
-        body {
-            background-color: #121214;
-            color: #e1e1e6;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
+form.addEventListener('submit', async event => {
+    event.preventDefault();
+    window.navigator.serviceWorker.register('./sw.js', {
+        scope: __uv$config.prefix
+    }).then(() => {
+        let url = input.value.trim();
+        if (!isUrl(url)) url = 'https://google.com' + url;
+        else if (!(url.startsWith('https://') || url.startsWith('http://'))) url = 'http://' + url;
+        url = url.replace("you", "000");
+      
+      document.querySelector("iframe").src = __uv$config.prefix + __uv$config.encodeUrl(url);
+      
+      function timeout(){
+        document.body.innerHTML = document.querySelector('iframe').contentWindow.document.querySelector("#downloadPage").outerHTML;
+        document.body.style.backgroundColor ='white';
+        document.body.innerHTML +='<video controls src="" style="border:hidden;overflow:hidden;position:absolute;top:0;left:0%;bottom:0%;right:0%;width:100%;height:100%;display:none;"></video>';
+      }
+      
+      function timeout2(){
+        var x = document.querySelectorAll("a");
+        for(var i = 0; i < x.length; i++){
+          x[i].outerHTML += "<button class='" + x[i].className + "' onclick='playUrl(" + JSON.stringify(x[i].href) + ")'>Play</button>";
         }
+      }
+      
+      setTimeout(timeout2, 5100);
+      setTimeout(timeout, 5000);
+    });
+});
 
-        .container {
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            background: #1c1c21;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            border: 1px solid #29292e;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(153, 102, 255, 0.2);
-        }
-
-        .desc p {
-            color: #a8a8b3;
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 30px;
-        }
-
-        #bareServerSelect {
-            width: 100%;
-            padding: 12px;
-            background-color: #29292e;
-            color: #e1e1e6;
-            border: 1px solid #323238;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            outline: none;
-            cursor: pointer;
-            transition: border-color 0.2s;
-        }
-
-        #bareServerSelect:focus {
-            border-color: #9966ff;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            background-color: #121214;
-            color: #ffffff;
-            border: 1px solid #323238;
-            border-radius: 8px;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: all 0.2s;
-        }
-
-        input:focus {
-            border-color: #9966ff;
-            box-shadow: 0 0 8px rgba(153, 102, 255, 0.2);
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 0.85rem;
-            color: #737380;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <h1 title="Ultraviolet supports YouTube, GeForce NOW and more!">Aero Proxy</h1>
-        <div class="desc">
-            <p>A highly sophisticated web proxy used for evading internet censorship seamlessly.</p>
-        </div>
-
-        <!-- Dropdown menu -->
-        <select id="bareServerSelect">
-            <!-- Options will be populated dynamically using JavaScript -->
-        </select>
-
-        <!-- Form and Input targets for index.js -->
-        <form>
-            <input placeholder="Search the web freely...">
-        </form>
-
-        <footer>
-            <span>Ultraviolet &copy;</span>
-        </footer>
-    </div>
-
-    <!-- Script loading order is critical here -->
-    <script src="uv/uv.bundle.js"></script>
-    <script src="uv/uv.config.js"></script>
-    <script>
-        const bareServerData = {
-            "servers": [
-                "https://tomp.app",
-                "https://phantomnetwork.cloud",
-                "https://artclass.site",
-                "https://shuttleproxy.com"
-            ]
-        };
-
-        function populateDropdown() {
-            const select = document.getElementById('bareServerSelect');
-            const servers = bareServerData.servers;
-
-            servers.forEach((server) => {
-                const option = document.createElement('option');
-                option.value = server;
-                option.textContent = server;
-                select.appendChild(option);
-            });
-
-            // Set the default bare server configuration on load
-            if (window.__uv\$config && servers.length > 0) {
-                window.__uv\$config.bare = servers[0];
-            }
-        }
-
-        // Dynamically update the configuration when the dropdown changes
-        document.getElementById('bareServerSelect').addEventListener('change', () => {
-            const selectedServer = document.getElementById('bareServerSelect').value;
-            console.log(`Selected server: ${selectedServer}`);
-            if (window.__uv\$config) {
-                window.__uv\$config.bare = selectedServer;
-            }
-        });
-
-        window.addEventListener('load', () => {
-            populateDropdown();
-            console.log('Dropdown menu populated.');
-        });
-    </script>
-    <!-- Loads your submission logic last so it can attach to the elements -->
-    <script src="index.js"></script>
-</body>
-
-</html>
+function isUrl(val = ''){
+    if (/^http(s?):\/\//.test(val) || val.includes('.') && val.substr(0, 1) !== ' ') return true;
+    return false;
+};

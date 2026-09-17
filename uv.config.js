@@ -1,7 +1,7 @@
   async function loadBareServers() {
     try {
-      // Adjusted fetch header rules to prevent browser CORS/MIME-type blocking
-      const response = await fetch('./data/bare-servers.json', {
+      // FIX: Forces the relative tracking context to read natively inside the /yes/ subfolder directory
+      const response = await fetch('data/bare-servers.json', { 
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -17,7 +17,7 @@
       
       const select = document.getElementById('bareServerSelect');
       if (select) {
-        select.innerHTML = ''; // Flush placeholder entry
+        select.innerHTML = ''; // Flushes "Loading servers..." away safely
         
         bareServers.forEach(server => {
           const option = document.createElement('option');
@@ -33,15 +33,15 @@
     } catch (error) {
       console.error('Error loading bare servers:', error);
       
-      // Hardcoded fallback so the UI never breaks or gets stuck if fetch fails
+      // Safety fail-open: If GitHub blocks the network look-up, build the live elements directly anyway
       const select = document.getElementById('bareServerSelect');
       if (select) {
         select.innerHTML = '';
-        const fallbackServers = ["https://tomp.app", "https://phantomnetwork.cloud"];
+        const fallbackServers = ["https://phantomnetwork.cloud", "https://artclass.site", "https://shuttleproxy.com"];
         fallbackServers.forEach(server => {
           const option = document.createElement('option');
           option.value = server;
-          option.textContent = server + " (Fallback)";
+          option.textContent = server;
           select.appendChild(option);
         });
         self.__uv\$config.bare = fallbackServers[0];

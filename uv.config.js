@@ -1,8 +1,8 @@
-/* BETA CONFIG */
+/* Aero Proxy | Ultraviolet Beta Configuration */
 
 self.__uv\$config = {
   prefix: '/uv/service/',
-  bare: 'https://tomp.app/', // Default server
+  bare: 'https://tomp.app', // Default fallback server
   encodeUrl: Ultraviolet.codec.xor.encode,
   decodeUrl: Ultraviolet.codec.xor.decode,
   handler: '/uv/uv.handler.js',
@@ -11,11 +11,10 @@ self.__uv\$config = {
   sw: '/uv/uv.sw.js',
 };
 
-// Only run DOM code if we are in the main browser window (not the Service Worker)
+// DOM isolation wrapper to prevent Service Worker compilation failure
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   let bareServers = [];
 
-  // Load the list of bare servers when the script runs
   async function loadBareServers() {
     try {
       const response = await fetch('/data/bare-servers.json'); 
@@ -24,8 +23,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       
       const select = document.getElementById('bareServerSelect');
       if (select) {
-        // Clear any hardcoded options first
-        select.innerHTML = '';
+        select.innerHTML = ''; // Flush placeholder entry
         
         bareServers.forEach(server => {
           const option = document.createElement('option');
@@ -34,7 +32,6 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
           select.appendChild(option);
         });
         
-        // Match config bare to whatever default option loaded
         if (select.value) {
           self.__uv\$config.bare = select.value;
         }
@@ -44,17 +41,14 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     }
   }
 
-  // Function to handle user selection and update the 'bare' property
   function handleServerSelection() {
     const select = document.getElementById('bareServerSelect');
     if (select) {
-      const selectedServer = select.value;
-      self.__uv\$config.bare = selectedServer;
-      console.log(`Config updated to bare server: ${selectedServer}`);
+      self.__uv\$config.bare = select.value;
+      console.log(`Bare routing engine point changed to: ${select.value}`);
     }
   }
 
-  // Load the list of bare servers when the script runs
   window.addEventListener('DOMContentLoaded', () => {
     loadBareServers();
     

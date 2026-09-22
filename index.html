@@ -1,68 +1,109 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Aero Proxy | Sophisticated Web Proxy</title>
-    <meta name="description" content="Aero Proxy is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers. Unblock sites today!" />
-    <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, holy unblocker, chromebooks, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111111">
-    <meta name="googlebot" content="index, follow, snippet" />
-    <link href="index.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Drifters - Download</title>
     <style>
-        #bareServerSelect {
-            width: 220px;
-            padding: 8px 12px;
-            background: #222;
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            outline: none;
-            cursor: pointer;
-            margin: 15px auto;
-            display: block;
+        /* Modern Dark Racing Theme */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d0e12;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
             text-align: center;
+            background: linear-gradient(145deg, #14161d, #1f232e);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2d3243;
+            max-width: 450px;
+            width: 90%;
         }
-        #bareServerSelect:focus {
-            border-color: rgba(253, 253, 253, 0.514);
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #3250FF;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        iframe {
-            display: none;
+
+        p {
+            color: #a0a5b5;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        /* Animated Download Button */
+        .download-btn {
+            display: inline-block;
+            background-color: #3250FF;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(50, 80, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .download-btn:hover {
+            background-color: #1e3ad4;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(50, 80, 255, 0.6);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Tiny Instruction Panel */
+        .instructions {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #2d3243;
+            font-size: 0.9rem;
+            color: #6c7284;
+        }
+
+        .key {
+            background-color: #2d3243;
+            color: #ffffff;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            border-bottom: 2px solid #1a1d27;
         }
     </style>
 </head>
-
 <body>
-    <div class="logo-wrapper">
-        <h1 title="Ultraviolet supports YouTube, GeForce NOW and more!">Aero Proxy</h1>
+
+    <div class="container">
+        <h1>Desktop Drifters</h1>
+        <p>A lightweight screen overlay companion that chases your mouse cursor and drifts in clean circles when you stop moving!</p>
+        
+        <!-- This link triggers the automatic download of your compiled exe -->
+        <a href="desktop drifters main.exe" download="desktop_drifters.exe" class="download-btn">
+            Download App
+        </a>
+
+        <div class="instructions">
+            Tip: Press the <span class="key">Esc</span> key at any time to close the application windows instantly.
+        </div>
     </div>
-    
-    <div title="Ultraviolet uses the power of service-workers and more! Unblock many sites today with Ultraviolet!" class="desc">
-        <p>A highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox securely.</p>
-    </div>
 
-    <!-- Bare Server Selector -->
-    <select id="bareServerSelect">
-        <option>Loading servers...</option>
-    </select>
-
-    <!-- Search Form -->
-    <form>
-        <input placeholder="Search the web freely">
-    </form>
-
-    <!-- Appended Iframe required by custom script DOM injection -->
-    <iframe src="about:blank"></iframe>
-
-    <footer>
-        <span>Ultraviolet &copy;</span>
-    </footer>
-
-    <!-- Scripts loaded in sequential execution order -->
-    <script src="uv/uv.bundle.js"></script>
-    <script src="uv/uv.config.js"></script>
-    <script src="index.js"></script>
 </body>
-
 </html>

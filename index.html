@@ -14,8 +14,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            padding: 2rem 0;
+            box-sizing: border-box;
         }
 
         .container {
@@ -25,7 +26,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border: 1px solid #2d3243;
-            max-width: 450px;
+            max-width: 480px;
             width: 90%;
         }
 
@@ -58,6 +59,7 @@
             box-shadow: 0 5px 15px rgba(50, 80, 255, 0.4);
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 1.5rem;
         }
 
         .download-btn:hover {
@@ -66,13 +68,40 @@
             box-shadow: 0 8px 25px rgba(50, 80, 255, 0.6);
         }
 
-        .download-btn:active {
-            transform: translateY(-1px);
+        /* False Positive / Suspicious Warning Panel */
+        .warning-box {
+            background-color: rgba(255, 165, 0, 0.08);
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: left;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .warning-title {
+            color: #ffa500;
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .warning-box ul {
+            margin: 0.5rem 0 0 0;
+            padding-left: 1.2rem;
+            color: #c4c9d6;
+        }
+
+        .warning-box li {
+            margin-bottom: 0.4rem;
         }
 
         /* Tiny Instruction Panel */
         .instructions {
-            margin-top: 2.5rem;
+            margin-top: 2rem;
             padding-top: 1.5rem;
             border-top: 1px solid #2d3243;
             font-size: 0.9rem;
@@ -95,10 +124,20 @@
         <h1>Desktop Drifters</h1>
         <p>A lightweight screen overlay companion that chases your mouse cursor and drifts in clean circles when you stop moving!</p>
         
-        <!-- This link triggers the automatic download of your compiled exe -->
+        <!-- Download Button -->
         <a href="desktop drifters main.exe" download="desktop_drifters.exe" class="download-btn">
             Download App
         </a>
+
+        <!-- SmartScreen/Browser Warning Notice -->
+        <div class="warning-box">
+            <div class="warning-title">⚠️ Note on Security Warnings:</div>
+            Because this website is brand new and the app is an unrecognized standalone file, your browser or Windows may flag it as "suspicious" or "untrusted". This is a common false positive for new indie programs.
+            <ul>
+                <li><strong>On Browser:</strong> If the download pauses, click the arrow/options menu next to the file and choose <strong>"Keep"</strong>.</li>
+                <li><strong>On Windows:</strong> If SmartScreen pops up, click <strong>"More Info"</strong> and then select <strong>"Run Anyway"</strong>.</li>
+            </ul>
+        </div>
 
         <div class="instructions">
             Tip: Press the <span class="key">Esc</span> key at any time to close the application windows instantly.
